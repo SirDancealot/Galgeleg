@@ -7,25 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c81c3e04-e893-46c8-b4a3-73a237bd5a90" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Server_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/brugerautorisation/data/Bruger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/brugerautorisation/transport/rmi/Brugeradmin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/ClientMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/game/BenytGalgelegModServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/login/Brugerlogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/login/Diverse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/main/ServerMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/Shared.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/src/main/game/GalgelogikI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/galgeleg/BenytGalgelogik.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/galgeleg/Galgelogik.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/game/GalgelogikImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/galgeleg/GalgelogikUnitTest.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Client_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/Client/src/main/game/BenytGalgelegModServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="86" lean-forward="true" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
+              <caret line="14" column="86" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/Server/src/main/ServerMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client/src/main/ClientMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="32" column="63" lean-forward="true" selection-start-line="32" selection-start-column="63" selection-end-line="32" selection-end-column="63" />
+            <state relative-caret-position="137">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -300,7 +285,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1581700221987" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1581700425551" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Client/src/brugerautorisation" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -400,7 +385,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.29392624" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.20715836" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.35683298" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -474,7 +459,7 @@
     <entry file="file://$PROJECT_DIR$/Server/src/main/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -484,7 +469,7 @@
     <entry file="file://$PROJECT_DIR$/Client/src/main/game/BenytGalgelegModServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="86" lean-forward="true" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
+          <caret line="14" column="86" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -503,8 +488,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/ClientMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="32" column="63" lean-forward="true" selection-start-line="32" selection-start-column="63" selection-end-line="32" selection-end-column="63" />
+        <state relative-caret-position="137">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -517,7 +502,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>Server:jar</last-edited>
+          <last-edited>Client:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
