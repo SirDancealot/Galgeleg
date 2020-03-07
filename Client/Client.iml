@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Shared" />
+    <orderEntry type="library" name="com.konghq:unirest-java:3.6.00" level="project" />
   </component>
 </module>
