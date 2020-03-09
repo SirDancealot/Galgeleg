@@ -2,6 +2,7 @@ import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import kong.unirest.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CMDClientMain {
@@ -53,10 +54,10 @@ public class CMDClientMain {
                 System.out.println("Ordet du skal gætte er: "+ spillet.get("synligtord")); //indsæt synligt ord!
                 System.out.println("Du har gættet på: ");
 
-                String gættedeBogstaver[] = (String[]) spillet.get("usedLetters"); // Print alle gættede bogstaver
+                ArrayList<String> gættedeBogstaver = (ArrayList<String>) spillet.get("usedLetters"); // Print alle gættede bogstaver
 
-                for (int i = 0; i < gættedeBogstaver.length; i++){
-                    System.out.print(gættedeBogstaver[i]);
+                for (int i = 0; i < gættedeBogstaver.size(); i++){
+                    System.out.print(gættedeBogstaver.indexOf(i));
                 }
 
                 System.out.println();
