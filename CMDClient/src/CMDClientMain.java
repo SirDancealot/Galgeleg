@@ -72,7 +72,7 @@ public class CMDClientMain {
 
                     bogstavGættet.trim().toLowerCase();
 
-                }while(bogstavGættet.matches("")||bogstavGættet.matches(" "));
+                }while(bogstavGættet.matches("[a-z]"));
 
                 Unirest.post("localhost:8080/game").body(bogstavGættet).asJson();
 
