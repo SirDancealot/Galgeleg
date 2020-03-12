@@ -5,21 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.*;
 
 public class GalgelogikImpl extends UnicastRemoteObject implements GalgelogikI {
   /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
   ArrayList<String> muligeOrd = new ArrayList<String>();
-  private String ordet;
-  private ArrayList<String> brugteBogstaver = new ArrayList<String>();
-  private String synligtOrd;
-  private int antalForkerteBogstaver;
-  private boolean sidsteBogstavVarKorrekt;
-  private boolean spilletErVundet;
-  private boolean spilletErTabt;
+  HashMap<String, GameState> games = new HashMap<>();
 
   public GalgelogikImpl() throws java.rmi.RemoteException {
     muligeOrd.add("bil");
@@ -31,110 +22,126 @@ public class GalgelogikImpl extends UnicastRemoteObject implements GalgelogikI {
     muligeOrd.add("skovsnegl");
     muligeOrd.add("solsort");
     muligeOrd.add("nitten");
-    nulstil();
   }
 
 
   @Override
-  public ArrayList<String> getBrugteBogstaver() {
-    return brugteBogstaver;
+  public ArrayList<String> getBrugteBogstaver(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.getBrugteBogstaver();
   }
 
   @Override
-  public String getSynligtOrd() {
-    return synligtOrd;
+  public String getSynligtOrd(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.getSynligtOrd();
   }
 
   @Override
-  public String getOrdet() {
-    return ordet;
+  public String getOrdet(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.getOrdet();
   }
 
   @Override
-  public int getAntalForkerteBogstaver() {
-    return antalForkerteBogstaver;
+  public int getAntalForkerteBogstaver(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.getAntalForkerteBogstaver();
   }
 
   @Override
-  public boolean erSidsteBogstavKorrekt() {
-    return sidsteBogstavVarKorrekt;
+  public boolean erSidsteBogstavKorrekt(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.isSidsteBogstavVarKorrekt();
   }
 
   @Override
-  public boolean erSpilletVundet() {
-    return spilletErVundet;
+  public boolean erSpilletVundet(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.isSpilletErVundet();
   }
 
   @Override
-  public boolean erSpilletTabt() {
-    return spilletErTabt;
+  public boolean erSpilletTabt(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.isSpilletErTabt();
   }
 
   @Override
-  public boolean erSpilletSlut() {
-    return spilletErTabt || spilletErVundet;
+  public boolean erSpilletSlut(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    return game.isSpilletErTabt()|| game.isSpilletErVundet();
   }
 
 
   @Override
-  public void nulstil() {
-    brugteBogstaver.clear();
-    antalForkerteBogstaver = 0;
-    spilletErVundet = false;
-    spilletErTabt = false;
-    if (muligeOrd.isEmpty()) throw new IllegalStateException("Listen over ord er tom!");
-    ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
-    opdaterSynligtOrd();
+  public void nulstil(String user) {
+    games.remove(user);
   }
 
 
-  private void opdaterSynligtOrd() {
-    synligtOrd = "";
-    spilletErVundet = true;
-    for (int n = 0; n < ordet.length(); n++) {
-      String bogstav = ordet.substring(n, n + 1);
-      if (brugteBogstaver.contains(bogstav)) {
-        synligtOrd = synligtOrd + bogstav;
+  private void opdaterSynligtOrd(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+    game.setSynligtOrd("");
+    game.setSpilletErVundet(true);
+    for (int n = 0; n < game.getOrdet().length(); n++) {
+      String bogstav = game.getOrdet().substring(n, n + 1);
+      if (game.getBrugteBogstaver().contains(bogstav)) {
+        game.setSynligtOrd(game.getSynligtOrd() + bogstav);
       } else {
-        synligtOrd = synligtOrd + "*";
-        spilletErVundet = false;
+        game.setSynligtOrd(game.getSynligtOrd() + "*");
+        game.setSpilletErVundet(false);
       }
     }
   }
 
   @Override
-  public void gætBogstav(String bogstav) {
+  public void gætBogstav(String user, String bogstav) {
+    userExists(user);
+    GameState game = games.get(user);
     if (bogstav.length() != 1) return;
     System.out.println("Der gættes på bogstavet: " + bogstav);
-    if (brugteBogstaver.contains(bogstav)) return;
-    if (spilletErVundet || spilletErTabt) return;
+    if (game.getBrugteBogstaver().contains(bogstav)) return;
+    if (game.isSpilletErVundet() || game.isSpilletErTabt()) return;
 
-    brugteBogstaver.add(bogstav);
+    game.getBrugteBogstaver().add(bogstav);
 
-    if (ordet.contains(bogstav)) {
-      sidsteBogstavVarKorrekt = true;
+    if (game.getOrdet().contains(bogstav)) {
+      game.setSidsteBogstavVarKorrekt(true);
       System.out.println("Bogstavet var korrekt: " + bogstav);
     } else {
       // Vi gættede på et bogstav der ikke var i ordet.
-      sidsteBogstavVarKorrekt = false;
+      game.setSidsteBogstavVarKorrekt(false);
       System.out.println("Bogstavet var IKKE korrekt: " + bogstav);
-      antalForkerteBogstaver = antalForkerteBogstaver + 1;
-      if (antalForkerteBogstaver > 6) {
-        spilletErTabt = true;
+      game.setAntalForkerteBogstaver(game.getAntalForkerteBogstaver() + 1);
+      if (game.getAntalForkerteBogstaver() > 6) {
+        game.setSpilletErTabt(true);
       }
     }
-    opdaterSynligtOrd();
+    opdaterSynligtOrd(user);
   }
 
   @Override
-  public void logStatus() {
+  public void logStatus(String user) {
+    userExists(user);
+    GameState game = games.get(user);
+
     System.out.println("---------- ");
-    System.out.println("- ordet (skult) = " + ordet);
-    System.out.println("- synligtOrd = " + synligtOrd);
-    System.out.println("- forkerteBogstaver = " + antalForkerteBogstaver);
-    System.out.println("- brugeBogstaver = " + brugteBogstaver);
-    if (spilletErTabt) System.out.println("- SPILLET ER TABT");
-    if (spilletErVundet) System.out.println("- SPILLET ER VUNDET");
+    System.out.println("- ordet (skult) = " + game.getOrdet());
+    System.out.println("- synligtOrd = " + game.getSynligtOrd());
+    System.out.println("- forkerteBogstaver = " + game.getAntalForkerteBogstaver());
+    System.out.println("- brugeBogstaver = " + game.getBrugteBogstaver());
+    if (game.isSpilletErTabt()) System.out.println("- SPILLET ER TABT");
+    if (game.isSpilletErVundet()) System.out.println("- SPILLET ER VUNDET");
     System.out.println("---------- ");
   }
 
@@ -178,7 +185,6 @@ public class GalgelogikImpl extends UnicastRemoteObject implements GalgelogikI {
     muligeOrd.addAll(new HashSet<String>(Arrays.asList(data.split(" "))));
 
     System.out.println("muligeOrd = " + muligeOrd);
-    nulstil();
   }
 
 
@@ -212,6 +218,20 @@ public class GalgelogikImpl extends UnicastRemoteObject implements GalgelogikI {
     }
 
     System.out.println("muligeOrd = " + muligeOrd);
-    nulstil();
+  }
+
+  private void userExists(String user) {
+    if (games.containsKey(user))
+      return;
+    GameState game = new GameState();
+    game.setUser(user);
+    game.setOrdet(muligeOrd.get(new Random(System.currentTimeMillis()).nextInt(muligeOrd.size())));
+    int wordLength = game.getOrdet().length();
+    String visible = "";
+    for (int i = 0; i < wordLength; i++) {
+      visible += "*";
+    }
+    game.setSynligtOrd(visible);
+    games.put(user, game);
   }
 }
