@@ -6,113 +6,136 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CMDClientMain {
+
+    private static String username;
+
     public static void main(String[] args) throws Exception {
 
-        String username, password,URL = "localhost:8080";
-        boolean loggedIn = false,failed = false, playagain = false;
+        String URL = "http://localhost:20129";
+        boolean loggedIn = false;
+        boolean playAgain = false;
         Scanner scan = new Scanner(System.in);
         HttpResponse response;
-
+        JSONObject spilInformation;
+        ArrayList<String> brugteBogstaver = new ArrayList<>();
+        String bogstav;
 
         System.out.println("--- Velkommen til galgelegs spillet! Log ind for at fortsætte ---");
 
-        do{
-            if(failed)
-                System.out.println("Brugernavn eller kodeord er forkert. Prøv igen!");
-
-            System.out.print("Brugernavn:");
-            username = scan.nextLine();
-            System.out.print("Kodeord:");
-            password = scan.nextLine();
-
-           response = Unirest.post(URL+"/login").field("username",username).field("password",password).asEmpty();
-
-           if(response.isSuccess()){
-               loggedIn = true;
-           } else {
-               loggedIn = false;
-           }
-
-        }while(!loggedIn);
-
-        JSONObject spillet;
+        do {
+            if (login())
+                loggedIn = true;
+        }while (!loggedIn);
 
         do{
+            spilInformation = Unirest.get(URL+"/game/"+username).asJson().getBody().getObject();
+            if (spilInformation.getString("isGameOver").equals("true"))
+                Unirest.delete(URL+"/game").field("name",username).asEmpty();
 
 
             System.out.println("Velkommen til Galgeleg!");
 
-            boolean erSpilletSlut = false;
-            String bogstavGættet;
+            response = Unirest.get(URL+"/game/"+username).asJson();
+            validateUser(response);
 
-            spillet = Unirest.get(URL+"/game").queryString("username",username).asJson().getBody().getObject(); //  <--indsæt URL
 
             do {
 
                 System.out.println();
                 System.out.println("--- Top of the round ---");
-                System.out.println("Ordet du skal gætte er: "+ spillet.get("synligtord")); //indsæt synligt ord!
-                System.out.println("Du har gættet på: ");
+                System.out.println("Ordet du skal gætte er: "+ spilInformation.getString("visibleWord"));
+                System.out.println("Du har allerede gættet på: ");
 
-                ArrayList<String> gættedeBogstaver = (ArrayList<String>) spillet.get("usedLetters"); // Print alle gættede bogstaver
+                spilInformation.getJSONArray("usedLetters");
 
-                for (int i = 0; i < gættedeBogstaver.size(); i++){
-                    System.out.print(gættedeBogstaver.indexOf(i));
+                for (int i = 0; i < spilInformation.getJSONArray("usedLetters").length(); i++){
+                    brugteBogstaver.clear();
+                    brugteBogstaver.add(spilInformation.getJSONArray("usedLetters").getString(i));
+                    System.out.print(brugteBogstaver.toString());
                 }
 
                 System.out.println();
 
-                art(spillet.getInt("lives"));
+                art(spilInformation.getInt("lives"));
 
                 System.out.print("Gæt på et bogstav: ");
 
                 do {
 
-                    bogstavGættet = scan.next();
+                    bogstav = scan.next();
 
-                    bogstavGættet.trim().toLowerCase();
+                    bogstav.trim().toLowerCase();
 
-                }while(bogstavGættet.matches("[a-z]"));
+                }while(!(bogstav.matches("[a-z]")));
 
-                Unirest.post("localhost:8080/game").body(bogstavGættet).asJson();
+                Unirest.post(URL+"/game").field("name",username).field("guess",bogstav).asEmpty();
 
                 System.out.println("--- Round end ---");
 
-                spillet = Unirest.get(URL+"/game").queryString("username",username).asJson().getBody().getObject(); //  <--indsæt URL
+                spilInformation = Unirest.get(URL+"/game/"+username).asJson().getBody().getObject();
 
-            } while (spillet.getBoolean("isGameOver"));
+            } while (spilInformation.getString("isGameOver").equals("false"));
 
-            if(spillet.getInt("lives")== 0){
+            if(spilInformation.getInt("lives") == 7){
 
                 System.out.println("Du har tabt :^( den stakkels mand blev hængt");
 
             } else {
-
-                System.out.println("Du har vundet, du havde " + spillet.getInt("lives") + " liv tilbage! :^)");
-
+                System.out.println("Du har vundet, du havde " + (7-spilInformation.getInt("lives")) + " liv tilbage! :^)");
             }
 
             System.out.println("Spillet er slut. Vil du spille igen?");
             System.out.println("yes/no?:");
 
-            if(scan.next().trim().toLowerCase().matches("yes")){
-
-                playagain = false;
-                //TODO play again
-
+            if("yes".matches(scan.next().trim().toLowerCase())){
+                Unirest.delete(URL+"/game").field("name",username).asEmpty();
+                playAgain = true;
             } else {
-
-                playagain = false;
-
+                playAgain = false;
+                Unirest.delete(URL+"/game").field("name",username).asEmpty();
+                System.out.println("Goodbye");
             }
 
-        } while (playagain);
+        } while (playAgain);
 
+    }
+
+
+    private static boolean login(){
+        boolean loggedIn;
+
+        Scanner scan = new Scanner(System.in);
+
+        do{
+            System.out.print("Brugernavn:");
+            username = scan.nextLine();
+            System.out.print("Kodeord:");
+            String password = scan.nextLine();
+
+            String URL = "http://localhost:20129";
+            HttpResponse response = Unirest.post(URL +"/login").field("name",username).field("password", password).asEmpty();
+
+            if(response.getStatus() == 200){
+                loggedIn = true;
+            } else {
+                System.out.println("Brugernavn eller kodeord er forkert. Prøv igen!");
+                loggedIn = false;
+            }
+        }while(!loggedIn);
+
+        return true;
+    }
+
+    private static void validateUser(HttpResponse response){
+        if (response.getStatus() != 200){
+            System.out.println("You have been logged out, please login again");
+            login();
+        }
     }
 
     private static void art(int liv){
 
-        if (liv == 6){
+        if (liv == 0){
             System.out.println("               ");
             System.out.println("    -------    ");
             System.out.println("    |     |    ");
@@ -121,7 +144,7 @@ public class CMDClientMain {
             System.out.println("          |    ");
             System.out.println("          |    ");
             System.out.println("        -----  ");
-        }else if(liv == 5){
+        }else if(liv == 1){
             System.out.println("               ");
             System.out.println("    -------    ");
             System.out.println("    |     |    ");
@@ -130,7 +153,7 @@ public class CMDClientMain {
             System.out.println("          |    ");
             System.out.println("          |    ");
             System.out.println("        -----  ");
-        }else if(liv == 4){
+        }else if(liv == 2){
             System.out.println("               ");
             System.out.println("    -------    ");
             System.out.println("    |     |    ");
@@ -148,7 +171,7 @@ public class CMDClientMain {
             System.out.println("          |    ");
             System.out.println("          |    ");
             System.out.println("        -----  ");
-        }else if(liv == 2){
+        }else if(liv == 4){
             System.out.println("               ");
             System.out.println("    -------    ");
             System.out.println("    |     |    ");
@@ -157,7 +180,7 @@ public class CMDClientMain {
             System.out.println("          |    ");
             System.out.println("          |    ");
             System.out.println("        -----  ");
-        }else if(liv == 1){
+        }else if(liv == 5){
             System.out.println("               ");
             System.out.println("    -------    ");
             System.out.println("    |     |    ");
@@ -166,7 +189,7 @@ public class CMDClientMain {
             System.out.println("   /      |    ");
             System.out.println("          |    ");
             System.out.println("        -----  ");
-        }else if(liv == 0){
+        }else if(liv == 6){
             System.out.println("               ");
             System.out.println("    -------    ");
             System.out.println("    |     |    ");
