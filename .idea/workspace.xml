@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="831d52c3-e771-4799-ae8d-9979b7ff070f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GalgelegPHPServer/GalgelegPHPServer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GalgelegPHPServer" beforeDir="false" afterPath="$PROJECT_DIR$/GalgelegPHPServer" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/rest-service/target/" />
@@ -27,7 +24,7 @@
     <session id="-1718863778">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="2" />
@@ -44,7 +41,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="54" />
+          <entry key="PLAIN_TEXT" value="71" />
         </counts>
       </usages-collector>
     </session>
@@ -96,6 +93,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/rest-service" />
   </component>
   <component name="IdeDocumentHistory">
@@ -174,7 +172,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1584114014408" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1584114141297" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/rest-service" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -273,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584112813571</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added sub modules">
+      <created>1584114118112</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1584114118112</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -336,37 +341,24 @@
     <MESSAGE value="rettet calls" />
     <MESSAGE value="rettede gættedebogstaver" />
     <MESSAGE value="Added the rest-service as a submodule" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the rest-service as a submodule" />
+    <MESSAGE value="Added sub modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sub modules" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2592" y="173" width="529" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1583596948763">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2592" y="173" width="529" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583596948763" />
-    <state width="1874" height="291" key="GridCell.Tab.0.bottom" timestamp="1583597514858">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="291" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583597514858" />
-    <state width="1874" height="291" key="GridCell.Tab.0.center" timestamp="1583597514858">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="291" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583597514858" />
-    <state width="1874" height="291" key="GridCell.Tab.0.left" timestamp="1583597514857">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="291" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583597514857" />
-    <state width="1874" height="291" key="GridCell.Tab.0.right" timestamp="1583597514858">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="291" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583597514858" />
-    <state x="2355" y="28" width="1028" height="835" key="SettingsEditor" timestamp="1583596951437">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2355" y="28" width="1028" height="835" key="SettingsEditor/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583596951437" />
-    <state x="2300" y="33" width="1125" height="742" key="new project wizard" timestamp="1583596852050">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2300" y="33" width="1125" height="742" key="new project wizard/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583596852050" />
+    <state x="2592" y="173" width="529" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog" />
+    <state x="2592" y="173" width="529" height="416" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" />
+    <state width="1874" height="291" key="GridCell.Tab.0.bottom" />
+    <state width="1874" height="291" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" />
+    <state width="1874" height="291" key="GridCell.Tab.0.center" />
+    <state width="1874" height="291" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" />
+    <state width="1874" height="291" key="GridCell.Tab.0.left" />
+    <state width="1874" height="291" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" />
+    <state width="1874" height="291" key="GridCell.Tab.0.right" />
+    <state width="1874" height="291" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" />
+    <state x="2355" y="28" width="1028" height="835" key="SettingsEditor" />
+    <state x="2355" y="28" width="1028" height="835" key="SettingsEditor/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" />
+    <state x="2300" y="33" width="1125" height="742" key="new project wizard" />
+    <state x="2300" y="33" width="1125" height="742" key="new project wizard/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://D:/Java/lib/src.zip!/java.base/java/lang/Object.java" />
