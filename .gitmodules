@@ -1,0 +1,3 @@
+[submodule "GalgelegPHPServer"]
+	path = GalgelegPHPServer
+	url = https://github.com/SirDancealot/GalgelegPHPServer.git
