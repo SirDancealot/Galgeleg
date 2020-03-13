@@ -11,11 +11,10 @@ public class CMDClientMain {
 
     public static void main(String[] args) throws Exception {
 
-        String URL = "http://localhost:20129";
+        String URL = "http://dist.saluton.dk:20129";
         boolean loggedIn = false;
-        boolean playAgain = false;
+        boolean playAgain;
         Scanner scan = new Scanner(System.in);
-        HttpResponse response;
         JSONObject spilInformation;
         ArrayList<String> brugteBogstaver = new ArrayList<>();
         String bogstav;
@@ -28,15 +27,12 @@ public class CMDClientMain {
         }while (!loggedIn);
 
         do{
-            spilInformation = Unirest.get(URL+"/game/"+username).asJson().getBody().getObject();
-            if (spilInformation.getString("isGameOver").equals("true"))
-                Unirest.delete(URL+"/game").field("name",username).asEmpty();
 
+            validateUser();
+            spilInformation = Unirest.get(URL+"/game/"+username).asJson().getBody().getObject();
 
             System.out.println("Velkommen til Galgeleg!");
 
-            response = Unirest.get(URL+"/game/"+username).asJson();
-            validateUser(response);
 
 
             do {
@@ -68,10 +64,12 @@ public class CMDClientMain {
 
                 }while(!(bogstav.matches("[a-z]")));
 
+                validateUser();
                 Unirest.post(URL+"/game").field("name",username).field("guess",bogstav).asEmpty();
 
                 System.out.println("--- Round end ---");
 
+                validateUser();
                 spilInformation = Unirest.get(URL+"/game/"+username).asJson().getBody().getObject();
 
             } while (spilInformation.getString("isGameOver").equals("false"));
@@ -88,9 +86,11 @@ public class CMDClientMain {
             System.out.println("yes/no?:");
 
             if("yes".matches(scan.next().trim().toLowerCase())){
+                validateUser();
                 Unirest.delete(URL+"/game").field("name",username).asEmpty();
                 playAgain = true;
             } else {
+                validateUser();
                 playAgain = false;
                 Unirest.delete(URL+"/game").field("name",username).asEmpty();
                 System.out.println("Goodbye");
@@ -126,8 +126,9 @@ public class CMDClientMain {
         return true;
     }
 
-    private static void validateUser(HttpResponse response){
-        if (response.getStatus() != 200){
+    private static void validateUser(){
+        HttpResponse httpResponse = Unirest.get("http://dist.saluton.dk:20129/login/"+username).asJson();
+        if (httpResponse.getStatus() != 200){
             System.out.println("You have been logged out, please login again");
             login();
         }
