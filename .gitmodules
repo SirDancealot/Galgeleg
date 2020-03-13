@@ -1,6 +1,0 @@
-[submodule "rest-service"]
-	path = rest-service
-	url = https://github.com/DovendyretS/rest-service.git
-[submodule "GalgelegPHPServer"]
-	path = GalgelegPHPServer
-	url = https://github.com/SirDancealot/GalgelegPHPServer.git
