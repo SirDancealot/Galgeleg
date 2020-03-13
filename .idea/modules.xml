@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CMDClient/CMDClient.iml" filepath="$PROJECT_DIR$/CMDClient/CMDClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/GalgelegPHPServer/GalgelegPHPServer.iml" filepath="$PROJECT_DIR$/GalgelegPHPServer/GalgelegPHPServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GalgelegPHPServer/GalgelegPHPServer.iml" filepath="$PROJECT_DIR$/GalgelegPHPServer/GalgelegPHPServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/Shared/Shared.iml" filepath="$PROJECT_DIR$/Shared/Shared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-service/rest-service.iml" filepath="$PROJECT_DIR$/rest-service/rest-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rest-service/rest-service.iml" filepath="$PROJECT_DIR$/rest-service/rest-service.iml" />
     </modules>
   </component>
